@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'oauth-resource-server-sample'
+    version =  '0.0.1'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.0.RELEASE")
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.4.RELEASE'
+    compile 'org.springframework.security:spring-security-oauth2-client:5.0.5.RELEASE'
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    // JUnit 5 (Jupiter)
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.2.0'
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.23.0'
+}
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
