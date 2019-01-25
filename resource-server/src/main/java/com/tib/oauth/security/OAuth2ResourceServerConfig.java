@@ -23,7 +23,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
         http.cors().configurationSource(request -> corsConfiguration)
             .and()
             .csrf().disable()
-            .authorizeRequests().antMatchers("/v1/api/").hasAnyRole();
+            .authorizeRequests().antMatchers("/v1/api/**").authenticated();
 
     }
 
