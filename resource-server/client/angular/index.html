@@ -6,11 +6,12 @@
 </head>
 <body ng-controller="uuidController">
 <div>
-    <label>Name:</label>
-    <input type="text" ng-model="yourName" placeholder="Enter a name here">
-    <hr>
-    <h1>Hello {{yourName}}!</h1>
+    <h1>The UUID Generator </h1>
     <button ng-click="generateUUID()">Generate UUID</button>
+</div>
+
+<div style="border:1px solid #ccc;padding:10px;" ng-model="uuidValue">
+    {{uuidValue}}
 </div>
 
 </body>
