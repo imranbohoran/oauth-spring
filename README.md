@@ -13,4 +13,16 @@ The `client_redirect_uri` is the URI to which th client expects the access token
 
 A client can then add the access token as a Bearer token header when calling the api.
 
+An example js client is available in the `resource-server/client` folder.
+
+- Run both auth-server	and resource-server with their defaults
+- Put the index.html and script.js to your web server context and access the index.html
+- Clicking the `Generate UUID` button would attempt making a call to the UUID endpoing
+- Failing which it would do a redirect to the auth url and thus authenticating and
+  authorising the user. The user creds can be found in the auth-server
+- The user would be brought back to the same page, but a `code` param will appear 
+  returning url
+- Clicking the `Generate UUID` button again will make a successful call to the api
+  and show the generated UUID
+
 
