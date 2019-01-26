@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -65,7 +64,7 @@ public class AccessTokenResource {
         MultiValueMap<String, String> requestData = new LinkedMultiValueMap<>();
         requestData.add("grant_type", "authorization_code");
         requestData.add("code", code);
-        requestData.add("redirect_uri", "http://localhost:8091/example-resource-server/v1/auth/authenticated?client_redirect_uri=http://localhost:8091/example-resource-server/v1/sample/app-redirect");
+        requestData.add("redirect_uri", "http://localhost:8091/example-resource-server/v1/auth/authenticated?client_redirect_uri="+redirectUri);
 
         RestTemplate restTemplate = restTemplateBuilder.basicAuthorization(clientId, secret)
             .build();

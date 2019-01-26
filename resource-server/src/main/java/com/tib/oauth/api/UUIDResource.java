@@ -22,14 +22,29 @@ public class UUIDResource {
     public UUIDResource(UUIDGenerator uuidGenerator) {this.uuidGenerator = uuidGenerator;}
 
     @GetMapping(value = "/v1/api/uuid")
-    public ResponseEntity<String> getUUID(Principal principal) {
+    public ResponseEntity<UUIDResult> getUUID(Principal principal) {
         logPrincipal(principal);
-        return ResponseEntity.ok(uuidGenerator.generate());
+        String uuid = uuidGenerator.generate();
+        UUIDResult result = new UUIDResult();
+        result.setResult(uuid);
+        return ResponseEntity.ok(result);
     }
 
     private void logPrincipal(Principal principal) {
         SecurityContextHolder.getContext().getAuthentication().getAuthorities().forEach(x -> {
             LOGGER.info(x.getAuthority());
         });
+    }
+
+    public static class UUIDResult {
+        private String result;
+
+        public String getResult() {
+            return result;
+        }
+
+        public void setResult(String result) {
+            this.result = result;
+        }
     }
 }
